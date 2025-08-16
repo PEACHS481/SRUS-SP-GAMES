@@ -63,6 +63,26 @@ class PlayerList:
 
         return removed_node.player
 
+    def remove_by_id(self, uniqueid):
+        #remove specific node via player.uid
+        current_node = self.head
+        while current_node is not None:
+            if current_node.player.uid == uniqueid:
+                if current_node == self.head:
+                    # if head of list use pop_head function
+                    return self.pop_head()
+                # Case 2: removing tail
+                elif current_node == self.tail:
+                    # if tail of list use pop_tail function
+                    return self.pop_tail() 
+                else:
+                    #remove node ffrom list, update references for both prev and next node
+                    current_node.prev_node.next_node = current_node.next_node
+                    current_node.next_node.prev_node = current_node.prev_node
+                    return current_node.player
+                
+        return None # No uniqueid found
+
     def is_empty(self):
         return self.head is None
     
