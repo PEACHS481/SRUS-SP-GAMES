@@ -33,6 +33,36 @@ class PlayerList:
             new_node.prev_node = self.tail
             self.tail = new_node
 
+    def pop_head(self):
+        if self.head is None:
+            return None
+        
+        removed_node = self.head
+        self.head = self.head.next_node
+
+        if self.head is not None:
+            self.head.prev_node = None
+        else:
+            # list is empty so tail must be updated to be None
+            self.tail = None
+        
+        return removed_node.player
+    
+    def pop_tail(self):
+        if self.tail is None:
+            return None
+        
+        removed_node = self.tail
+        self.tail = self.tail.prev_node
+
+        if self.tail is not None:
+            self.tail.next_node = None
+        else:
+            #list is empty and head must be updated to be None
+            self.head = None
+
+        return removed_node.player
+
     def is_empty(self):
         return self.head is None
     
