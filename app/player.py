@@ -7,5 +7,5 @@ class Player:
         self.name = playername
 
     def __str__(self):
-        return self.uid, self.name
+        return f"{self.uid}: {self.name}"
     

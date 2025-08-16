@@ -8,6 +8,7 @@ from player import Player
 class PlayerList:
     def __init__(self):
         self.head = None
+        self.tail = None
 
 # Push method to insert new node at head of list
     def push(self, player):
@@ -16,6 +17,9 @@ class PlayerList:
 
         if self.head is not None:
             self.head.prev_node = new_node
+        else:
+            self.tail = new_node
+
         self.head = new_node 
 
     def is_empty(self):

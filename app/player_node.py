@@ -10,7 +10,7 @@ class PlayerNode:
         self.prev_node = None
 
     def __str__(self):
-        return self.player
+        return str(self.player)
 
     def next_node(self):
         return self.next_node
