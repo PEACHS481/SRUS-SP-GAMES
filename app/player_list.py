@@ -22,6 +22,17 @@ class PlayerList:
 
         self.head = new_node 
 
+    def append(self, player):
+        new_node = Player(player)
+
+        if self.tail is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next_node = new_node
+            new_node.prev_node = self.tail
+            self.tail = new_node
+
     def is_empty(self):
         return self.head is None
     
