@@ -28,7 +28,7 @@ class Test_player_list(unittest.TestCase):
         self.assertEqual(pl1.head.player.name, "Sam", "Head is pointing to Sam")
         self.assertEqual(pl1.tail.player.name, "Sam", "Tail is pointing at Sam")
 
-    def tes_append_to_non_empty_list(self):
+    def test_append_to_non_empty_list(self):
         pl1 = PlayerList()
         person1 = Player("001", "Sam")
         person2 = Player("002", "Tony")
@@ -39,3 +39,27 @@ class Test_player_list(unittest.TestCase):
         self.assertEqual(pl1.tail.player.name, "Tony", "Tail pointing at Tony")
         self.assertEqual(pl1.head.next_node.player.name, "Tony", "Sam should be linking next to Tony")
         self.assertEqual(pl1.head.prev_node.player.name, "Sam", "Tony should be linking prev to Sam")
+
+    def test_pop_head(self):
+        pl1 = PlayerList()
+        person1 = Player("001", "Sam")
+        person2 = Player("002", "Tony")
+        pl1.append(person1)
+        pl1.append(person2)
+
+        removed_node = pl1.pop_head()
+        self.assertEqual(removed_node.name, "Sam", "po_head should remove Sam")
+        self.assertEqual(pl1.head.player.name, "Tony", "Head should now be Tony")
+        self.assertEqual(pl1.tail.player.name, "Tony", "Tail should still be Tony")
+
+    def test_pop_tail(self):
+        pl1 = PlayerList()
+        person1 = Player("001", "Sam")
+        person2 = Player("002", "Tony")
+        pl1.append(person1)
+        pl1.append(person2)
+
+        removed_node = pl1.pop_tail()
+        self.assertEqual(removed_node.name, "Tony", "Tail deletion should remove Tony")
+        self.assertEqual(pl1.head.player.name, "Sam", "Head should still be Sam")
+        self.assertEqual(pl1.tail.player.name, "Sam", "Tail should now be Sam")
