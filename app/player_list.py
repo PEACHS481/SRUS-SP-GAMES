@@ -83,6 +83,26 @@ class PlayerList:
                 
         return None # No uniqueid found
 
+    def display(self, forward=True):
+        #display the list of players
+        #Forward=True: Head to Tail
+        #Forward=False: Tail to Head
+        if forward:
+            current_node = self.head
+            print("Forward=True: Head to Tail")
+            while current_node is not None:
+                print(f"uid: {current_node.player.uid}, Name: {current_node.player.name}")
+                current_node = current_node.next_node
+
+        # Logic for tail to head linked list iteration
+        else:
+            current_node = self.tail
+            print("Forward=False: Tail to Head")
+            while current_node is not None:
+                print(f"uid: {current_node.player.uid}, Name: {current_node.player.name}")
+                current_node = current_node.prev_node
+    
+    
     def is_empty(self):
         return self.head is None
     
