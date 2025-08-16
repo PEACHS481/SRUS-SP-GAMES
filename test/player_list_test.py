@@ -63,3 +63,17 @@ class Test_player_list(unittest.TestCase):
         self.assertEqual(removed_node.name, "Tony", "Tail deletion should remove Tony")
         self.assertEqual(pl1.head.player.name, "Sam", "Head should still be Sam")
         self.assertEqual(pl1.tail.player.name, "Sam", "Tail should now be Sam")
+
+    def test_remove_by_id(self):
+        pl1 = PlayerList()
+        person1 = Player("001", "Sam")
+        person2 = Player("002", "Tony")
+        person3 = Player("003", "John")
+
+        pl1.append(person1)
+        pl1.append(person2)
+        pl1.append(person3)
+
+        removed_node = pl1.remove_by_id("002")
+        self.assertEqual(removed_node.name, "Tony", "Should remove the player with unique id as uid=002")
+        
