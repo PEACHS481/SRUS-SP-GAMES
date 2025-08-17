@@ -12,11 +12,5 @@ class PlayerNode:
     def __str__(self):
         return str(self.player)
 
-    def next_node(self):
-        return self.next_node
-
-    def prev_node(self):
-        return self.prev_node
-
     def key(self):
         return self.player.uid

@@ -23,7 +23,7 @@ class PlayerList:
         self.head = new_node 
 
     def append(self, player):
-        new_node = Player(player)
+        new_node = PlayerNode(player)
 
         if self.tail is None:
             self.head = new_node
@@ -80,7 +80,7 @@ class PlayerList:
                     current_node.prev_node.next_node = current_node.next_node
                     current_node.next_node.prev_node = current_node.prev_node
                     return current_node.player
-                
+            current_node = current_node.next_node    
         return None # No uniqueid found
 
     def display(self, forward=True):
