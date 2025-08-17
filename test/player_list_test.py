@@ -38,7 +38,7 @@ class Test_player_list(unittest.TestCase):
         self.assertEqual(pl1.head.player.name, "Sam", "Head pointing at Sam")
         self.assertEqual(pl1.tail.player.name, "Tony", "Tail pointing at Tony")
         self.assertEqual(pl1.head.next_node.player.name, "Tony", "Sam should be linking next to Tony")
-        self.assertEqual(pl1.head.prev_node.player.name, "Sam", "Tony should be linking prev to Sam")
+        self.assertEqual(pl1.tail.prev_node.player.name, "Sam", "Tony should be linking prev to Sam")
 
     def test_pop_head(self):
         pl1 = PlayerList()
