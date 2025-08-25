@@ -16,3 +16,11 @@ class Player:
     @property
     def uid(self) -> str:
         return self._uid
+
+# setup for hashmap
+    @classmethod
+    def your_chosen_hash_function(cls, key: str) -> int:
+        ...
+
+    def __hash__(self):
+        return self.your_chosen_hash_function(self.uid)
