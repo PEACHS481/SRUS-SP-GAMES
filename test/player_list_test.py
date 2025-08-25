@@ -3,7 +3,8 @@ import unittest
 from app.player import Player
 from app.player_list import PlayerList
 
-class Test_player_list(unittest.TestCase):
+
+class TestPlayerList(unittest.TestCase):
     def test_player_list_is_empty_true(self):
         pl1 = PlayerList()
         self.assertTrue(pl1.is_empty(), "Expected Return: True thats it is indeed a empty list")
@@ -14,8 +15,8 @@ class Test_player_list(unittest.TestCase):
         person1 = Player("001", "Sam")
         pl1.push(person1)
         self.assertFalse(pl1.is_empty(), "Expected Return: False for a empty list")
-        self.assertEqual(pl1.head.player.name, "Sam", "head should point to Sam player node" )
-        self.assertEqual(pl1.tail.player.name, "Sam", "tail should point to Sam player node")
+        self.assertEqual(pl1.head._player._name, "Sam", "head should point to Sam player node" )
+        self.assertEqual(pl1.tail._player._name, "Sam", "tail should point to Sam player node")
 
     def test_append_to_empty_list(self):
         pl1 = PlayerList()
@@ -25,8 +26,8 @@ class Test_player_list(unittest.TestCase):
         pl1.append(person1)
 
         self.assertFalse(pl1.is_empty(), "Expected Return :List should not be empty")
-        self.assertEqual(pl1.head.player.name, "Sam", "Head is pointing to Sam")
-        self.assertEqual(pl1.tail.player.name, "Sam", "Tail is pointing at Sam")
+        self.assertEqual(pl1.head._player._name, "Sam", "Head is pointing to Sam")
+        self.assertEqual(pl1.tail._player._name, "Sam", "Tail is pointing at Sam")
 
     def test_append_to_non_empty_list(self):
         pl1 = PlayerList()
@@ -35,10 +36,10 @@ class Test_player_list(unittest.TestCase):
         pl1.append(person1)
         pl1.append(person2)
 
-        self.assertEqual(pl1.head.player.name, "Sam", "Head pointing at Sam")
-        self.assertEqual(pl1.tail.player.name, "Tony", "Tail pointing at Tony")
-        self.assertEqual(pl1.head.next_node.player.name, "Tony", "Sam should be linking next to Tony")
-        self.assertEqual(pl1.tail.prev_node.player.name, "Sam", "Tony should be linking prev to Sam")
+        self.assertEqual(pl1.head._player._name, "Sam", "Head pointing at Sam")
+        self.assertEqual(pl1.tail._player._name, "Tony", "Tail pointing at Tony")
+        self.assertEqual(pl1.head.next_node._player._name, "Tony", "Sam should be linking next to Tony")
+        self.assertEqual(pl1.tail.prev_node._player._name, "Sam", "Tony should be linking prev to Sam")
 
     def test_pop_head(self):
         pl1 = PlayerList()

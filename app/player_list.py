@@ -1,8 +1,8 @@
 #Player List for Assessment 1
 #Author Samuel Peach
 
-from player_node import PlayerNode
-from player import Player  
+from app.player_node import PlayerNode
+
 
 #Initialise Class PlayerList
 class PlayerList:
@@ -10,12 +10,12 @@ class PlayerList:
         self.head = None
         self.tail = None
 
-# Push method to insert new node at head of list
+    # Push method to insert new node at head of list
     def push(self, player):
         new_node = PlayerNode(player)
         new_node.next_node = self.head
 
-        if self.head is not None:
+        if not self.is_empty():
             self.head.prev_node = new_node
         else:
             self.tail = new_node
@@ -25,7 +25,7 @@ class PlayerList:
     def append(self, player):
         new_node = PlayerNode(player)
 
-        if self.tail is None:
+        if self.is_empty():
             self.head = new_node
             self.tail = new_node
         else:
@@ -34,13 +34,13 @@ class PlayerList:
             self.tail = new_node
 
     def pop_head(self):
-        if self.head is None:
+        if self.is_empty():
             return None
         
         removed_node = self.head
         self.head = self.head.next_node
 
-        if self.head is not None:
+        if not self.is_empty():
             self.head.prev_node = None
         else:
             # list is empty so tail must be updated to be None
@@ -49,13 +49,13 @@ class PlayerList:
         return removed_node.player
     
     def pop_tail(self):
-        if self.tail is None:
+        if self.is_empty():
             return None
         
         removed_node = self.tail
         self.tail = self.tail.prev_node
 
-        if self.tail is not None:
+        if not self.is_empty():
             self.tail.next_node = None
         else:
             #list is empty and head must be updated to be None
@@ -64,7 +64,7 @@ class PlayerList:
         return removed_node.player
 
     def remove_by_id(self, uniqueid):
-        #remove specific node via player.uid
+        """remove specific node via player.uid"""
         current_node = self.head
         while current_node is not None:
             if current_node.player.uid == uniqueid:
@@ -76,17 +76,17 @@ class PlayerList:
                     # if tail of list use pop_tail function
                     return self.pop_tail() 
                 else:
-                    #remove node ffrom list, update references for both prev and next node
+                    #remove node from list, update references for both prev and next node
                     current_node.prev_node.next_node = current_node.next_node
                     current_node.next_node.prev_node = current_node.prev_node
                     return current_node.player
             current_node = current_node.next_node    
-        return None # No uniqueid found
+        return None # No unique_id found
 
     def display(self, forward=True):
-        #display the list of players
-        #Forward=True: Head to Tail
-        #Forward=False: Tail to Head
+        """ display the list of players
+        Forward=True: Head to Tail
+        Forward=False: Tail to Head """
         if forward:
             current_node = self.head
             print("Forward=True: Head to Tail")
