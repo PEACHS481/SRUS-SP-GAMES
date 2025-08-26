@@ -1,10 +1,11 @@
-#Player List for Assessment 1
-#Author Samuel Peach
+# Player List for Assessment 1
+# Author Samuel Peach
 
 from app.player_node import PlayerNode
+from app.player import Player
 
 
-#Initialise Class PlayerList
+# Initialise Class PlayerList
 class PlayerList:
     def __init__(self):
         self.head = None
@@ -20,7 +21,7 @@ class PlayerList:
         else:
             self.tail = new_node
 
-        self.head = new_node 
+        self.head = new_node
 
     def append(self, player):
         new_node = PlayerNode(player)
@@ -36,7 +37,7 @@ class PlayerList:
     def pop_head(self):
         if self.is_empty():
             return None
-        
+
         removed_node = self.head
         self.head = self.head.next_node
 
@@ -45,20 +46,20 @@ class PlayerList:
         else:
             # list is empty so tail must be updated to be None
             self.tail = None
-        
+
         return removed_node.player
-    
+
     def pop_tail(self):
         if self.is_empty():
             return None
-        
+
         removed_node = self.tail
         self.tail = self.tail.prev_node
 
         if not self.is_empty():
             self.tail.next_node = None
         else:
-            #list is empty and head must be updated to be None
+            # list is empty and head must be updated to be None
             self.head = None
 
         return removed_node.player
@@ -74,14 +75,14 @@ class PlayerList:
                 # Case 2: removing tail
                 elif current_node == self.tail:
                     # if tail of list use pop_tail function
-                    return self.pop_tail() 
+                    return self.pop_tail()
                 else:
-                    #remove node from list, update references for both prev and next node
+                    # remove node from list, update references for both prev and next node
                     current_node.prev_node.next_node = current_node.next_node
                     current_node.next_node.prev_node = current_node.prev_node
                     return current_node.player
-            current_node = current_node.next_node    
-        return None # No unique_id found
+            current_node = current_node.next_node
+        return None  # No unique_id found
 
     def display(self, forward=True):
         """ display the list of players
@@ -101,12 +102,39 @@ class PlayerList:
             while current_node is not None:
                 print(f"uid: {current_node.player.uid}, Name: {current_node.player.name}")
                 current_node = current_node.prev_node
-    
-    
+
     def is_empty(self):
         return self.head is None
-    
-#Testing
-#pl1 = PlayerList()
-#person1 = Player("001", "Sam")
-#pl1.push(person1)
+
+
+class PlayerHashMap:
+    def __init__(self, size=10):
+        # setup for dictionary index of player list hashmap
+        self.size = None
+        self._map = {i: PlayerList() for i in range(size)}
+
+    # Retrieve a player from the PlayerList with the corresponding index in the hash map.
+    def __getitem__(self, key: str | Player) -> int:
+        if isinstance(key, Player):
+            return hash(key) % self.size
+        else:
+            return Player.hash_function(key) % self.size
+
+    # Add a new player to PlayerList in a corresponding index in the hash map.
+    def __setitem__(self, key: str, name: str):
+        return self._map[key]
+
+    # if self.key == PlayerHashMap.PlayerList
+
+    # Return the number of players in the hash map.
+    def __len__(self) -> int:
+        return len(self._map)
+
+    # Remove a player from the PlayerList with the corresponding index in the hash map.
+    def __delitem__(self, key: str):
+        del self._map[key]
+
+# Testing
+# pl1 = PlayerList()
+# person1 = Player("001", "Sam")
+# pl1.push(person1)
