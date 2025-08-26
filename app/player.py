@@ -1,4 +1,4 @@
-#Plauer.py file for Assessment 1
+# Player.py file for Assessment 1
 # Author: Samuel Peach
 
 class Player:
@@ -8,10 +8,10 @@ class Player:
 
     def __str__(self):
         return f"{self._uid}: {self._name}"
-    
+
     @property
     def name(self) -> str:
-        return  self._name
+        return self._name
 
     @property
     def uid(self) -> str:
