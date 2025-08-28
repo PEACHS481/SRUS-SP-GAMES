@@ -1,5 +1,6 @@
 # Player List for Assessment 1
 # Author Samuel Peach
+# Docstrings may include method description taken from tasks 2 implementation guide inside brackets (like this)
 
 from app.player_node import PlayerNode
 from app.player import Player
@@ -109,30 +110,87 @@ class PlayerList:
 
 class PlayerHashMap:
     def __init__(self, size=10):
-        # setup for dictionary index of player list hashmap
-        self.size = None
+        """Initialise Player Hash Map"""
+        self.size = size
         self._map = {i: PlayerList() for i in range(size)}
 
-    # Retrieve a player from the PlayerList with the corresponding index in the hash map.
-    def __getitem__(self, key: str | Player) -> int:
+    def get_index(self, key: str | Player):
+        """Get a particular index player list via key"""
         if isinstance(key, Player):
             return hash(key) % self.size
         else:
-            return Player.hash_function(key) % self.size
+            return Player.hash_function(key, self.size)
+
+    def __getitem__(self, key: str | Player) -> None:
+        """Get a player by key(Retrieve a player from the PlayerList with the corresponding index in the hash map.)"""
+        if isinstance(key, Player):
+            uid = key.uid
+        else:
+            uid = key
+
+        #use has function inside player, get the particular index of the player list containing uid
+        index = Player.hash_function(uid, self.size)
+        playerlist = self._map[index]
+
+        current_node = playerlist.head
+
+        while current_node:
+            if current_node.player.uid == uid:
+                print(f"Player found: uid: {current_node.player.uid}, Name: {current_node.player.name}")
+                return current_node.player
+            current_node = current_node.next_node
+
+        # if no player is found at all, should raise an error displaying uid was not found
+        if current_node.is_empty():
+            raise KeyError(f"Player not found: {uid}")
+        return None
 
     # Add a new player to PlayerList in a corresponding index in the hash map.
-    def __setitem__(self, key: str, name: str):
-        return self._map[key]
+    def __setitem__(self, key: str, name: str) -> None:
+        """Adding new player to the hash map
+           if player exist already, update the name
+           if not, create a new player"""
 
-    # if self.key == PlayerHashMap.PlayerList
+        index = self.get_index(key)
+        playerlist = self._map[index]
 
-    # Return the number of players in the hash map.
-    def __len__(self) -> int:
+        current_node = playerlist.head
+        while current_node:
+            if current_node.player.uid == key:
+                #found player using uid, update name
+                current_node.name = name
+                return
+            #search through list
+            current_node = current_node.next_node
+
+        new_player = Player(key, name)
+        playerlist.append(new_player)
+
+    def len_lists(self) -> int:
+        """ Return the number of player lists in the hash map.
+            For testing only"""
         return len(self._map)
 
-    # Remove a player from the PlayerList with the corresponding index in the hash map.
+    def __len__(self) -> int:
+        """Return number of players in hashmap (size(): Return the number of players in the hash map.)"""
+        count = 0
+        for playerlist in self._map.values():
+            current_node = playerlist.head
+            while current_node:
+                count += 1
+                current_node = current_node.next_node
+        return count
+
+
     def __delitem__(self, key: str):
-        del self._map[key]
+        """# Remove a player from the PlayerList with the corresponding index in the hash map."""
+        index = self.get_index(key)
+        playerlist = self._map[index]
+        removed_node = playerlist.remove_by_id(key)
+        if removed_node is None:
+            print(f"Player not found: {key}")
+
+
 
 # Testing
 # pl1 = PlayerList()
