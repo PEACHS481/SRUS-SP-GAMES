@@ -190,7 +190,17 @@ class PlayerHashMap:
         if removed_node is None:
             print(f"Player not found: {key}")
 
-
+    def display(self):
+        """print the content of each player list with one or more players"""
+        for index, playerlist in self._map.items():
+            # print if playerlist is found with entries
+            if not playerlist.is_empty():
+                print(f"Playerlist: {index}: {playerlist}")
+                current_node = playerlist.head
+                #while print all entries inside playerlist
+                while current_node:
+                    print(f"uid: {current_node.player.uid}, Name: {current_node.player.name}")
+                    current_node = current_node.next_node
 
 # Testing
 # pl1 = PlayerList()
