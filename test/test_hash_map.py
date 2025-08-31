@@ -35,3 +35,9 @@ class TestHashMap(unittest.TestCase):
         self.hashmap["001"] = "Sam"
         self.hashmap["002"] = "Tony"
         self.hashmap.display()
+
+    def test_delete_item(self):
+        self.hashmap["001"] = "Sam"
+        del self.hashmap["001"]
+
+        self.assertEqual(len(self.hashmap), 0)

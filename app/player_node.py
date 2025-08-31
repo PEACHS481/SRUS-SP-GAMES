@@ -20,3 +20,13 @@ class PlayerNode:
     def player(self) -> Player:
         """Expose the Player object stored in this node."""
         return self._player
+
+    @property
+    def next_node(self):
+        """Expose the Next Node stored in this node."""
+        return self._next_node
+
+    @property
+    def prev_node(self):
+        """Expose the Previous Node stored in this node."""
+        return self._prev_node
