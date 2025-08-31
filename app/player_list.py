@@ -1,4 +1,4 @@
-# Player List for Assessment 1
+# Player List for Assessment 1 Portfolio
 # Author Samuel Peach
 # Docstrings may include method description taken from tasks 2 implementation guide inside brackets (like this)
 
@@ -178,7 +178,7 @@ class PlayerHashMap:
             current_node = playerlist.head
             while current_node:
                 count += 1
-                current_node = current_node.next_node
+                current_node = current_node._next_node
         return count
 
 
@@ -200,7 +200,7 @@ class PlayerHashMap:
                 #while print all entries inside playerlist
                 while current_node:
                     print(f"uid: {current_node.player.uid}, Name: {current_node.player.name}")
-                    current_node = current_node.next_node
+                    current_node = current_node._next_node
 
 # Testing
 # pl1 = PlayerList()

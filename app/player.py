@@ -17,7 +17,7 @@ class Player:
     def uid(self) -> str:
         return self._uid
 
-    # Setup hash function, using sum of ASCII keys as shown in Knowledge and Reflection
+
     @classmethod
     def hash_function(cls, key: str, size: int) -> int:
         total = 0
