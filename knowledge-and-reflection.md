@@ -73,11 +73,19 @@ def sha256_hash(key: str, size: int) -> int:
 
 1. All of the above functions are hash functions. Explain how so - what key properties do they all share?
 
-> Your answer here
+> The hash functions above all have the key and size parameter, where key is the string passed 
+> through the function and size is the hash tables size. 
+> The key properties of hash functions, are deterministic, fixed output size, efficiency, uniformity and avalanche effect.
+> Deterministic: the hash function can produce the same output with the identical input. this allows for anyone using the input to get the identical output.
+> Fixed output size: all hashes have a fixed output size respective to their hash function, so their output is fixed regardless of input size.
+> Efficiency: the hash functions are not overly complex, and the process of the input to output is quick.
+> Uniformity: Some of these have their hash values spread across the output space evenly, avoiding similar values between outputs. 
+> Avalanche Effect: 
 
 2. What are the advantages and disadvantages of each of the above hash functions? Evaluate in terms of uniformity, determinism, efficiency, collision resistance, sensitivity to input changes, and security[1](#Reference). You may need to do some reasearch to answer this question 😱
 
-> Your answer here
+> the hash functions have uniformity, where the have equal probability for all possible hash values, 
+> with the exception of the simple hash function
 
 3. List the three most important attributes (arranged from most to least) in the context of a hash map? Justify your answer.
 

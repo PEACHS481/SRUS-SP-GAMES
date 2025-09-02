@@ -20,6 +20,7 @@ class Player:
 
     @classmethod
     def hash_function(cls, key: str, size: int) -> int:
+        """Hash Function: ASCII sums the values of the key, as taken from knowledge and reflection"""
         total = 0
         for char in key:
             total += ord(char)

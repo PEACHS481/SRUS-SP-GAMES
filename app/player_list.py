@@ -128,7 +128,7 @@ class PlayerHashMap:
         else:
             uid = key
 
-        #use has function inside player, get the particular index of the player list containing uid
+        # use has function inside player, get the particular index of the player list containing uid
         index = Player.hash_function(uid, self.size)
         playerlist = self._map[index]
 
@@ -168,7 +168,7 @@ class PlayerHashMap:
 
     def len_lists(self) -> int:
         """ Return the number of player lists in the hash map.
-            For testing only"""
+            For testing only, should be fixed at size of 10"""
         return len(self._map)
 
     def __len__(self) -> int:
