@@ -7,7 +7,7 @@ from app.player_list import PlayerList
 class TestPlayerList(unittest.TestCase):
     def test_player_list_is_empty_true(self):
         pl1 = PlayerList()
-        self.assertTrue(pl1.is_empty(), "Expected Return: True thats it is indeed a empty list")
+        self.assertTrue(pl1.is_empty(), "Expected Return: True that it is indeed a empty list")
         self.assertIsNone(pl1.tail, "Expected Return: tail is none and list is empty")
 
     def test_player_list_is_empty_false(self):

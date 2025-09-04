@@ -13,13 +13,12 @@ class TestHashMap(unittest.TestCase):
     def setUp(self):
         self.hashmap = PlayerHashMap(size=10)
 
-    def test_hash_len(self):
+    def test_hash_len_count_players(self):
         self.hashmap["001"] = "Sam"
         self.hashmap["002"] = "Tony"
         self.hashmap["003"] = "Alex"
-
+        # Expect 3 total players
         self.assertEqual(len(self.hashmap), 3)
-
 
     def test_hash_get_item(self):
         self.hashmap["001"] = "Sam"
@@ -28,12 +27,19 @@ class TestHashMap(unittest.TestCase):
         player1 = self.hashmap["001"]
         player2 = self.hashmap["002"]
 
-        self.assertEqual(player1.name, 'Sam')
+        self.assertEqual(player1.uid, "001")
+        self.assertEqual(player1.name, "Sam")
+        self.assertEqual(player2.uid, "002")
         self.assertEqual(player2.name, "Tony")
 
     def test_display(self):
         self.hashmap["001"] = "Sam"
         self.hashmap["002"] = "Tony"
+        self.hashmap["003"] = "Alex"
+        self.hashmap["004"] = "John"
+        self.hashmap["005"] = "Tom"
+
+        #Expected result player lists 5,6,7,8,9 all have one player each
         self.hashmap.display()
 
     def test_delete_item(self):
@@ -41,3 +47,20 @@ class TestHashMap(unittest.TestCase):
         del self.hashmap["001"]
 
         self.assertEqual(len(self.hashmap), 0)
+
+        with self.assertRaises(KeyError):
+            _ = self.hashmap["001"]
+
+    def test_set_item(self):
+        self.hashmap["001"] = "Sam"
+        player1 = self.hashmap["001"]
+        self.assertEqual(player1.name, "Sam")
+
+        self.hashmap["001"] = "Samuel"
+        updated_player = self.hashmap["001"]
+        self.assertEqual(updated_player.name, "Samuel")
+
+        self.assertEqual(len(self.hashmap), 1)
+
+if __name__ == '__main__':
+    unittest.main()

@@ -26,7 +26,15 @@ class PlayerNode:
         """Expose the Next Node stored in this node."""
         return self._next_node
 
+    @next_node.setter
+    def next_node(self, node: "PlayerNode"):
+        self._next_node = node
+
     @property
     def prev_node(self):
         """Expose the Previous Node stored in this node."""
         return self._prev_node
+
+    @prev_node.setter
+    def prev_node(self, node: "PlayerNode"):
+        self._prev_node = node

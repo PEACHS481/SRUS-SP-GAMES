@@ -136,14 +136,11 @@ class PlayerHashMap:
 
         while current_node:
             if current_node.player.uid == uid:
-                print(f"Player found: uid: {current_node.player.uid}, Name: {current_node.player.name}")
                 return current_node.player
             current_node = current_node.next_node
 
         # if no player is found at all, should raise an error displaying uid was not found
-        if current_node.is_empty():
-            raise KeyError(f"Player not found: {uid}")
-        return None
+        raise KeyError(f"Player not found: {uid}")
 
     # Add a new player to PlayerList in a corresponding index in the hash map.
     def __setitem__(self, key: str, name: str) -> None:
@@ -158,7 +155,7 @@ class PlayerHashMap:
         while current_node:
             if current_node.player.uid == key:
                 #found player using uid, update name
-                current_node.name = name
+                current_node.player._name = name
                 return
             #search through list
             current_node = current_node.next_node
@@ -178,7 +175,7 @@ class PlayerHashMap:
             current_node = playerlist.head
             while current_node:
                 count += 1
-                current_node = current_node._next_node
+                current_node = current_node.next_node
         return count
 
 
@@ -200,7 +197,7 @@ class PlayerHashMap:
                 #while print all entries inside playerlist
                 while current_node:
                     print(f"uid: {current_node.player.uid}, Name: {current_node.player.name}")
-                    current_node = current_node._next_node
+                    current_node = current_node.next_node
 
 # Testing
 # pl1 = PlayerList()
