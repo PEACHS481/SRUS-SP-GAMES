@@ -80,12 +80,23 @@ def sha256_hash(key: str, size: int) -> int:
 > Fixed output size: all hashes have a fixed output size respective to their hash function, so their output is fixed regardless of input size.
 > Efficiency: the hash functions are not overly complex, and the process of the input to output is quick.
 > Uniformity: Some of these have their hash values spread across the output space evenly, avoiding similar values between outputs. 
-> Avalanche Effect: 
+> Avalanche Effect: small changes in the input can result in the output being unpredictable and different.
 
 2. What are the advantages and disadvantages of each of the above hash functions? Evaluate in terms of uniformity, determinism, efficiency, collision resistance, sensitivity to input changes, and security[1](#Reference). You may need to do some reasearch to answer this question 😱
 
-> the hash functions have uniformity, where the have equal probability for all possible hash values, 
-> with the exception of the simple hash function
+> The four main hash functions above are the ASCII hash, Pearson hash, python's built-in hash function and SHA-256 hash.
+
+> ASCII hash positives are that it is very efficient as it's just getting the sum from the hash key. the hash function is also good in terms of determinism as the same input will give the same sum. it's also simple to use and implement.
+> ASCII hash negatives is that there is little uniformity as inputs can often give the same output. As a result, the collision resistance is low. ASCII is also quite weak for sensitivty as the change in a small input can result in a small change of the output. this can be concerning for the security the hashmap stores.
+
+> Pearson hashes benefits are the uniformity of inputs, efficiency as its faster than other hash methods, sensitivity as any small changes can create a drastically different output and has a little bit of collision resistance, which is good for smaller hashmaps.
+> Pearson hashes negatives are that the 
+
+> Python's hash benefits are that it is very efficient and has good uniformity, also the sensitivity is better than the ASCII hash function
+> > Pythons's hash negatives is the determinism is not good, as the hash seed python uses is randomized when each session is started. This can allow for the collision resistance to be low.
+
+> SHA-256 hash positives are the uniformity is good as the values are spread throughout evenly, so the lists can fill up evenly. Determinism is strong as the same input string gives the correct output value. The collision resistance is strong as long as there is many containers. Sensitivity is very strong, the input being changed results in the output value being very different. security risks are a bit lower compared to other hashes.
+> SHA-245 hash negatives are for efficiency it can be slow and is more suited towards larger hashmaps. 
 
 3. List the three most important attributes (arranged from most to least) in the context of a hash map? Justify your answer.
 
