@@ -90,7 +90,7 @@ def sha256_hash(key: str, size: int) -> int:
 > ASCII hash negatives is that there is little uniformity as inputs can often give the same output. As a result, the collision resistance is low. ASCII is also quite weak for sensitivty as the change in a small input can result in a small change of the output. this can be concerning for the security the hashmap stores.
 
 > Pearson hashes benefits are the uniformity of inputs, efficiency as its faster than other hash methods, sensitivity as any small changes can create a drastically different output and has a little bit of collision resistance, which is good for smaller hashmaps.
-> Pearson hashes negatives are that it is not cryptographically secure, which for security reasons is not recommended. The effectiveness is based upon thie size of the lookup table. there are also collision risks.
+> Pearson hashes negatives are that it is not cryptographically secure, which for security reasons is not recommended. The effectiveness is based upon this size of the lookup table. there are also collision risks.
 > [1] 
 
 > Python's hash benefits are that it is very efficient and has good uniformity, also the sensitivity is better than the ASCII hash function
@@ -111,7 +111,7 @@ def sha256_hash(key: str, size: int) -> int:
 
 4. Which of the above hash functions would you choose to implement the requirements of the task? Why?
 
-> For the tasks requirements, I have went with the ASCII hash function. This because the size of the hashmap is very small and is efficient. another benefit is for learning purposes, as that its easy to understand on how the input is changing the output.
+> For the tasks requirements, I have gone with the ASCII hash function. This because the size of the hashmap is very small and is efficient. another benefit is for learning purposes, as that its easy to understand on how the input is changing the output.
 > There is also good determinism as the same input always gives the same output. as the hashmap size is small, The ASCII hash is good for testing and better understanding on how hashmaps work.
 > there can be collisions and the clustering is often as a small change in the output leads to a small change for the output.
 
